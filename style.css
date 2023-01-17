@@ -1,0 +1,324 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial;
+}
+ul {
+    list-style: none;
+}
+
+body , html {
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+.nav-links li {
+    margin: 0 30px;
+}
+
+header {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./images/hero.jpg");
+    
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.header-content {
+    margin-bottom: 150px;
+    color: white;
+    text-align: center;
+}
+.header-content h2 {
+    font-size: 4vmin;
+}
+.line {
+    width: 150px;
+    height: 4px;
+    background: #DC0000;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+.header-content h1 {
+    font-size: 7vmin;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.ctn {
+    padding: 8px 15px;
+    background: #DC0000;
+    border-radius: 30px;
+    color: whitesmoke;
+}
+.menu-btn,.close-btn{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+  h3{
+    font-size: 25px;
+    margin: 20px auto;
+    width: 30%;
+    
+    color: #A6330A;
+  }
+  hr {
+    margin: 0px 150px;
+    color:  #850000;
+
+    
+  }
+
+  section {
+    width: 80%;
+    margin: 80px auto;
+}
+.title {
+    text-align: center;
+    font-size: 20px;
+    color: #850000;
+}
+.row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.row .col  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.destinacije .row {
+    margin-top: 50px;
+}
+
+.destinacije img{
+    max-width: 600px;
+}
+h4 {
+    font-size: 3vmin;
+    color: #484872;
+    margin: 20px auto;
+}
+p {
+    color: #674747;  
+}
+
+.destinacije .ctn {
+    margin-top: 30px;
+}
+
+.blog h1{
+    font-size: 45px;
+    color: #A6330A;
+}
+.content-col {
+    width: 40%;
+}
+.image-col {
+    width: 60%;
+}
+.tour .image-gallery{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+}
+.image-gallery img {
+    max-width: 300px;
+    margin: 10px;
+}
+.content-col h1{
+   font-size: 45px;
+    color: #A6330A;
+}
+
+.content-col p {
+    padding: 0;
+    margin: 30px auto;
+}
+.content-col .ctn {
+    margin-left: -100px;
+}
+
+#zanimljivosti{
+    margin: 80px auto;
+    
+}
+
+#zanimljivosti .row {
+    display: flex;
+    padding-left: 10px;
+}
+
+#zanimljivosti .row img{
+    max-width: 600px;
+}
+
+.col {
+    margin-left: 10px;
+}
+
+.col h1{
+    margin-left: 10px;
+    font-size: 50px;
+    color: #850000;
+}
+input[type=text],textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #010440;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+
+}
+
+.submit{
+    
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 15px;
+    background: whitesmoke;
+    border-radius: 30px;
+    border: none;
+    color: #DC0000;
+    
+}
+.forma{
+    
+    padding: 30px;
+    width: 40%;
+    margin: 20px auto;
+    background-color:#850000;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+    color:white;
+    font-size: 20px;
+    }
+
+.footer {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 80px;
+    margin: 0;
+    background: #850000;
+    text-align: center;
+}
+.footer p {
+    color: whitesmoke;
+    margin: 20px auto;
+}
+
+
+/* Mobile device */
+@media only screen and (max-width:850px){
+    .menu-btn {
+        display: block;
+    }
+    .navbar {
+        padding: 0;
+    }
+    .logo {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        background: #850000;
+        margin-top: -900px;
+        transition: all 0.5s ease;
+    }
+    .mobile-menu {
+        margin-top: 0px;
+        
+    }
+    .nav-links li {
+        margin: 30px auto;
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+    .row .col {
+        margin: 20px auto;
+    }
+    .col img {
+        max-width: 90%;
+    }
+    
+    .tour .col {
+        width: 100%;
+    }
+    .image-gallery {
+        justify-content: center;
+        align-items: center;
+    }
+    .image-gallery img {
+        width: 90%;
+    }
+
+    #zanimljivosti .container-z .z-content {
+        width: 80%;
+
+    }
+    .footer {
+        padding: 10px;
+    }
+}
+
+/* Animations */
+img {
+    transition: transform .3s ease;
+}
+img:hover {
+    transform: scale(1.1);
+}
+
+.map
+{   margin: auto;
+   position: relative;
+   top: 50%;
+  width: 100%;
+ 
+  
+}
+
+
+ 

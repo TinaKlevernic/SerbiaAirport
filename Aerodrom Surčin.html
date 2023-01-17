@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="./images/travellogo.png" />
+     <link rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+	integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+	crossorigin="" />
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+	integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+	crossorigin=""></script>
+    
+    
+    
+    <title>Airport Serbia</title>
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo"><img src="./images/travellogo.png" alt="Logo"></h1>
+        <ul class="nav-links">
+            <li class="active"><a href="index.html">Početna</a></li>
+            <li><a href="#">Aerodrom Surčin</a></li>
+            <li><a href="Aerodrom Priština.html">Aerodrom Priština</a></li>
+            <li><a  href="kontakt.html">Kontakt</a></li>
+        </ul>
+       <div class="mobile-nav">
+        <img src="./images/img-menu-btn.png" alt="" class="menu-btn">
+        <h1 class="close-btn">X</h1>
+       </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h2>Explore The Colorful World</h2>
+            <div class="line"></div>
+            <h1>A WONDERFUL GIFT</h1>
+            <a href="#" class="ctn">Saznajte vise</a>
+        </div>
+    </header>
+    <section class="destinacije">
+
+        <div class="title">
+            <h1>Destinacije koje je naša posada obišla</h1> <br>
+            
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="./images/madrid.jpg" alt="">
+                <h4>Madrid</h4>
+                <p>Madridom smo oduševljeni! Madrid je glavni grad Kraljevine Španije i autonomne pokrajine Madrid. 
+                Madrid se nalazi u srcu Španije na 665 m nadmorske visine (glavni grad sa najvećom nadmorskom visinom u Evropi). Smešten je na obali male reke Manzanares i pripada istorijskom predelu Kastilje.
+                 Severozapadno od grada izdiže se planina Sijera de Gvadarama sa vrhom Penjalara visine 2429 m. </p>
+                <a href="#" class="ctn">Pročitajte više</a>
+            </div>
+            <div class="col">
+                <img src="./images/LosA.jpg" alt="">
+                <h4>Los Angeles</h4>
+                <p>Los Anđeles je veoma veliki grad, a obodi grada su vrlo udaljeni od centra i idu od plaža do planina. Grad je nepravilnog oblika i zauzima površinu od oko 1.302 km².
+                 Los Anđeles ima Suptropsku-Mediteransku klimu i prima tek dovoljnu godišnju količinu padavina da se izbegne Saharska klima. Zamislite koliko je tamo toplo. 
+                 Ali uz nas program putovanja ne osećate vrućine Los Anđelesa.</p>
+                <a href="#" class="ctn">Pročitajte više</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="./images/peking.jpg" alt="">
+                <h4>Peking</h4>
+                <p>Najraniji ostaci ljudskog stanovanja u Pekingu su nađeni u pećinama Brda zmajeve kosti kod mesta Džoukoudijen u distriktu Fangšan, 
+                50 km jugozapadno od Pekinga, u kojima je živeo pekinški čovek. Fosili homo erektusa iz ove pećine potiču iz vremena od pre 230—250.000 godina.
+                 Na lokalitetu je otkopano stotine hiljada artefakata od kamena, većinom sitno oruđe raznih oblika. Zamislite sebe da se nalazite na takvom kulturnoistorijskom tlu!
+                  Mi vam to omogućavamo po povoljnim cenama!</p>
+                <a href="#" class="ctn">Pročitajte više</a>
+            </div>
+            <div class="col">
+                <img src="./images/Sidnej.jpeg" alt="">
+                <h4>Sidnej</h4>
+                <p>Sidnej, glavni grad Novog Južnog Walesa i jedan od najvećih australskih gradova, najpoznatiji je po svojoj luci Sydney Opera House, s prepoznatljivim dizajnom nalik jedru.
+                 Ogromna luka Darling i manja luka Circular Quay središta su života uz obalu,s lučnim mostom Harbour Bridge i cijenjenim Kraljevskim botaničkim vrtom u blizini.</p>
+                <a href="#" class="ctn">Pročitajte više</a>
+            </div>
+        </div>
+        
+    </section>
+    <script>
+        const mobileNav = document.querySelector('.mobile-nav')
+        const menuBtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        const closeBtn = document.querySelector('.close-btn')
+
+        mobileNav.addEventListener('click',(e)=>{
+            navlinks.classList.toggle('mobile-menu')
+            if(e.target === menuBtn){
+                menuBtn.replaceWith(closeBtn)
+                closeBtn.style.display = 'block'
+            }
+            if(e.target === closeBtn){
+                closeBtn.replaceWith(menuBtn)
+            }
+        })
+    </script>
+    
+    
+    
+          <div id="map"  class="map" style="height: 450px; width: 450px; "  >  </div>
+<script>     
+var map=L.map('map').setView([44.2107675 ,20.9224158],5);
+
+L.tileLayer ('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		{
+	
+	attribution: '&amp;copy; <a href="http://openstreetmap.org/copyrigth">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+
+//add geo tif world image-raster
+var GeoTIFF={Topografska_karta: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+    layers: 'Projekat:World TIF',
+    transparent: true,
+    format: 'image/png' }),
+    
+    
+    
+    SerbiaShapefile:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',
+    		{layers:'Projekat:serbiashapefile',
+    	transparent:true,
+    	format:'image/png'
+    
+    
+    } )}
+
+
+
+
+//addvector 
+
+
+var Airport = {Airports_World: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+	        layers: 'Projekat:world-airports',
+	        transparent: true,
+	        format:'image/png'
+	       
+	    }),
+	    
+	    SerbiaAirport:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',{
+	    	layers:'Projekat:Serbia_Airport',
+	    	transparent:true,
+	    	format:'image/png'
+	    })}
+	   
+	    	
+	    	
+	    	
+	    	
+	    
+	  
+
+
+
+
+L.control.layers( GeoTIFF,Airport).addTo(map);
+
+
+
+
+</script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>

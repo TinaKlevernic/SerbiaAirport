@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="images/travellogo.png" />
+    <link rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+	integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+	crossorigin="" />
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+	integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+	crossorigin=""></script>
+    <title>Airport Serbia</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <h1 class="logo"><img src="./images/travellogo.png" alt="Logo"></h1>
+        <ul class="nav-links">
+            <li class="active"><a href="#">Početna</a></li>
+            <li><a href="Aerodrom Surčin.html">Aerodrom Surčin</a></li>
+            <li><a href="Aerodrom Priština.html">Aerodrom Priština</a></li>
+            <li><a  href="kontakt.html">Kontakt</a></li>
+        </ul>
+      
+      
+     
+       <div class="mobile-nav">
+        <img src="./images/img-menu-btn.png" alt="" class="menu-btn">
+        <h1 class="close-btn">X</h1>
+       </div>
+    </nav> 
+
+    <header>
+        <div class="header-content">
+            <h2>Dobrodošli putnici!</h2>
+            <div class="line"></div>
+            <h1>Wellcome passingers!</h1>
+            <a href="#" class="ctn">Saznajte više</a>
+        </div>
+    </header>
+
+        <h3>
+        „PUTOVANJA VAS PRVO OSTAVE BEZ REČI,
+        A ONDA VAS PRETVORE U PRIPOVEDAČA.“ <br> <br> <i> Ibn Batuta </i></h3> 
+        <hr/>
+
+        <section class="blog">
+            <h1>Putujte sa nama<br>
+                PUTOVANJA KROZ CEO SVET
+            </h1>
+            <p> Putujući sa nama prolazite ceo svet avionima Boing klase.Tokom leta možete izabrati odgovarajuću klasu kojom putujete. Tokom leta posada uslužuje putnike
+            sokovima i obrocima. Poslovna klasa nudi udobna kožna crna sedišta sa rasklapajućim stolovima. Dozvoljen je prtljag od 30kg i ručni prtljag do 10kg. Poslovne klase 
+            su uglavnom u zadnjem delu aviona. Ekonomska klasa nudi sedišta od tkanine sa ograničenim mogućnostima obaranja i rasklapajućim stolovima. Dozvoljen je prtljag 
+            do 20kg i ručni prtljag do 10kg.  </p>
+        </section>
+        <hr/>
+
+        <section class="tour">
+            <div class="row">
+                <div class="col content-col">
+                    <h1>24h na usluzi!</h1>
+                    <p>Obećana udobnost pri višečasovnim letovima kao i mogućnost da prilikom online rezervacija karata pružimo besplatne usluge COVID-19 PCR pregleda za poslovnu klasu putnika.</p>
+                    <a href="zanimljivnosti.html" class="ctn">Saznajte vise</a>
+                </div>
+                <div class="col image-col">
+                    <div class="image-gallery">
+                        <img src="./images/1index.jpg" alt="1">
+                        <img src="./images/3index.jpg" alt="2">
+                        <img src="./images/4index.jpg" alt="3">
+                        <img src="./images/5index.jpeg" alt="4">
+                    </div>
+                </div>
+            </div>
+        </section>
+      
+ 
+      
+      
+      <div id="map"  class="map" style="height: 450px; width: 450px; "  >  </div>
+<script>     
+var map=L.map('map').setView([44.2107675 ,20.9224158],5);
+
+L.tileLayer ('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		{
+	
+	attribution: '&amp;copy; <a href="http://openstreetmap.org/copyrigth">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+
+//add geo tif world image-raster
+var GeoTIFF={Topografska_karta: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+    layers: 'Projekat:World TIF',
+    transparent: true,
+    format: 'image/png' }),
+    
+    
+    
+    SerbiaShapefile:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',
+    		{layers:'Projekat:serbiashapefile',
+    	transparent:true,
+    	format:'image/png'
+    
+    
+    } )}
+
+
+
+
+//addvector 
+
+
+var Airport = {Airports_World: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+	        layers: 'Projekat:world-airports',
+	        transparent: true,
+	        format:'image/png'
+	       
+	    }),
+	    
+	    SerbiaAirport:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',{
+	    	layers:'Projekat:Serbia_Airport',
+	    	transparent:true,
+	    	format:'image/png'
+	    })}
+	   
+	    	
+	    	
+	    	
+	    	
+	    
+	  
+
+
+
+
+L.control.layers( GeoTIFF,Airport).addTo(map);
+
+
+
+
+</script>
+
+
+
+
+
+
+      
+      
+        <section class="footer">
+            <p>Novi Sad, Serbia | Phone: 060-140-67-16 | Email: klevernictina@gmail.com</p>
+            
+        </section>
+    
+        <script>
+            const mobileNav = document.querySelector('.mobile-nav')
+            const menuBtn = document.querySelector('.menu-btn')
+            const navlinks = document.querySelector('.nav-links')
+            const closeBtn = document.querySelector('.close-btn')
+    
+            mobileNav.addEventListener('click',(e)=>{
+                navlinks.classList.toggle('mobile-menu')
+                if(e.target === menuBtn){
+                    menuBtn.replaceWith(closeBtn)
+                    closeBtn.style.display = 'block'
+                }
+                if(e.target === closeBtn){
+                    closeBtn.replaceWith(menuBtn)
+                }
+            })
+        </script>
+        
+        
+    
+</body>
+</html>

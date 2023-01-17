@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="./images/travellogo.png" />
+    
+     <link rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+	integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+	crossorigin="" />
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+	integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+	crossorigin=""></script>
+    <title>Airport Serbia</title>
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo"><img src="./images/travellogo.png" alt="Logo"></h1>
+        <ul class="nav-links">
+            <li class="active"><a href="index.html">Početna</a></li>
+            <li><a href="Aerodrom Surčin.html">Aerodrom Surčin</a></li>
+            <li><a href="Aerodrom Priština.html">Aerodrom Priština</a></li>
+            <li ><a  href="#">Kontakt</a></li>
+        </ul>
+       <div class="mobile-nav">
+        <img src="./images/img-menu-btn.png" alt="" class="menu-btn">
+        <h1 class="close-btn">X</h1>
+       </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h2>Istražite sa nama svet!</h2>
+            <div class="line"></div>
+            <h1>Ostavite nam komentar/sugestiju a mi ćemo Vam odgovoriti u roku od 24h</h1>
+            <a href="#" class="ctn">Saznajte vise</a>
+        </div>
+    </header>
+
+    <div class="forma">
+        <form>
+            <label for="Ime">Ime</label>
+          <input type="text" id="Ime" name="ime" placeholder="Vaše ime...">
+      
+          <label for="Prezime">Prezime</label>
+          <input type="text" id="Prezime" name="prezime" placeholder="Vaše prezime...">
+      
+          <label for="Poruka">Poruka</label>
+          <textarea id="poruka" name="porukaa" placeholder="Napišite vašu poruku" style="height:200px"></textarea>
+      
+          <input type="submit" class="submit" value="Pošalji">
+      
+        
+        </form>
+    </div>
+
+    
+       
+     
+
+    <script>
+        const mobileNav = document.querySelector('.mobile-nav')
+        const menuBtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        const closeBtn = document.querySelector('.close-btn')
+
+        mobileNav.addEventListener('click',(e)=>{
+            navlinks.classList.toggle('mobile-menu')
+            if(e.target === menuBtn){
+                menuBtn.replaceWith(closeBtn)
+                closeBtn.style.display = 'block'
+            }
+            if(e.target === closeBtn){
+                closeBtn.replaceWith(menuBtn)
+            }
+        })
+    </script>
+   
+          <div id="map" class="map" style="height: 450px; width: 450px; position:center"  >  </div>
+<script>     
+var map=L.map('map').setView([44.2107675 ,20.9224158],5);
+
+L.tileLayer ('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		{
+	
+	attribution: '&amp;copy; <a href="http://openstreetmap.org/copyrigth">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+
+//add geo tif world image-raster
+var GeoTIFF={Topografska_karta: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+    layers: 'Projekat:World TIF',
+    transparent: true,
+    format: 'image/png' }),
+    
+    
+    
+    SerbiaShapefile:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',
+    		{layers:'Projekat:serbiashapefile',
+    	transparent:true,
+    	format:'image/png'
+    
+    
+    } )}
+
+
+
+
+//addvector 
+
+
+var Airport = {Airports_World: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+	        layers: 'Projekat:world-airports',
+	        transparent: true,
+	        format:'image/png'
+	       
+	    }),
+	    
+	    SerbiaAirport:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',{
+	    	layers:'Projekat:Serbia_Airport',
+	    	transparent:true,
+	    	format:'image/png'
+	    })}
+	   
+	    	
+	    	
+	    	
+	    	
+	    
+	  
+
+
+
+
+L.control.layers( GeoTIFF,Airport).addTo(map);
+
+
+
+
+</script>
+    
+    
+    
+    
+        
+    
+    
+    
+    
+</body>
+</html>

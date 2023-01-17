@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="./images/travellogo.png" />
+     <link rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+	integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+	crossorigin="" />
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+	integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+	crossorigin=""></script>
+    
+    
+    
+    <title>PUTOVANJA PO ŠPANIJI</title>
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo"><img src="./images/travellogo.png" alt="Logo"></h1>
+        <ul class="nav-links">
+            <li class="active"><a href="index.html">Pocetna</a></li>
+            <li><a href="Aerodrom Surčin.html">Aerodrom Surčin</a></li>
+            <li><a href="#">Aerodrom priština</a></li>
+            <li><a  href="kontakt.html">Kontakt</a></li>
+        </ul>
+       <div class="mobile-nav">
+        <img src="./images/img-menu-btn.png" alt="" class="menu-btn">
+        <h1 class="close-btn">X</h1>
+       </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h2>Explore The Colorful World</h2>
+            <div class="line"></div>
+            <h1>A WONDERFUL GIFT</h1>
+            <a href="#" class="ctn">Saznajte više</a>
+        </div>
+    </header>
+
+    <section id="zanimljivosti">
+        <div class="row">
+            <img src="./images/pristina.jpg" alt="">
+            <div class="col">
+                <h1>Adem Jashari</h1>
+                <p>Ovaj aerodrom se nalazi 15km jugozapadno od samog grada. Ima sve moguće letove do brojnih destinacija u svetu!
+                Predstavlja jedinu ulaznu luku za vazdušne putnike na Kosovo i Metohiju. Nosi naziv u čast Adema Jašarija,osnivača oslobodilačke
+                vojske Kosova i služi kao operativna baza za Eurowings iz Nemačke. 
+                Aerodrom je 12. novembra 2008. po prvi put u svojoj istoriji primio milion putnika (ne računajući vojsku). Tim povodom je upriličena
+                 posebna svečanost na kojoj je milioniti putnik dobio besplatnu povratnu kartu do odredišta po svom izboru koje aerodrom opslužuje.</p>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1>Politički problemi </h1>
+                <p>Zbog tekućeg spora između Srbije i Republike Kosovo, na letove ka i sa aerodroma utiče odbijanje srpske kontrole vazdušnog 
+                saobraćaja, odnosno SMATSA, da dozvoli prelete preko vazdušnog prostora Srbije.
+                 Ovo dovodi do toga da putanje leta izbegavaju srpsku teritoriju, a letovi za Prištinu moraju da uđu preko vazdušnog prostora
+                  Albanije ili Severne Makedonije. Ovaj spor može da dovede do 30 minuta dužeg trajanja leta i diskusije. Budući da je jedini
+                   operativni aerodrom u neposrednom regionu, svaka skretanja idu preko susednih država, s obzirom da je Aerodrom Đakovica i
+                    dalje zatvoren objekat.</p>
+            </div>
+            <img src="./images/hala.jpeg" alt="">
+            
+        </div>
+    </section>
+
+    <script>
+        const mobileNav = document.querySelector('.mobile-nav')
+        const menuBtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        const closeBtn = document.querySelector('.close-btn')
+
+        mobileNav.addEventListener('click',(e)=>{
+            navlinks.classList.toggle('mobile-menu')
+            if(e.target === menuBtn){
+                menuBtn.replaceWith(closeBtn)
+                closeBtn.style.display = 'block'
+            }
+            if(e.target === closeBtn){
+                closeBtn.replaceWith(menuBtn)
+            }
+        })
+    </script>
+           <div id="map"  class="map" style="height: 450px; width: 450px; "  >  </div>
+<script>     
+var map=L.map('map').setView([44.2107675 ,20.9224158],5);
+
+L.tileLayer ('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		{
+	
+	attribution: '&amp;copy; <a href="http://openstreetmap.org/copyrigth">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+
+//add geo tif world image-raster
+var GeoTIFF={Topografska_karta: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+    layers: 'Projekat:World TIF',
+    transparent: true,
+    format: 'image/png' }),
+    
+    
+    
+    SerbiaShapefile:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',
+    		{layers:'Projekat:serbiashapefile',
+    	transparent:true,
+    	format:'image/png'
+    
+    
+    } )}
+
+
+
+
+//addvector 
+
+
+var Airport = {Airports_World: L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?', {
+	        layers: 'Projekat:world-airports',
+	        transparent: true,
+	        format:'image/png'
+	       
+	    }),
+	    
+	    SerbiaAirport:L.tileLayer.wms('http://localhost:8080/geoserver/Projekat/wms?',{
+	    	layers:'Projekat:Serbia_Airport',
+	    	transparent:true,
+	    	format:'image/png'
+	    })}
+	   
+	    	
+	    	
+	    	
+	    	
+	    
+	  
+
+
+
+
+L.control.layers( GeoTIFF,Airport).addTo(map);
+
+
+
+
+</script>
+    
+    
+    
+    
+       
+    
+    
+    
+</body>
+</html>
